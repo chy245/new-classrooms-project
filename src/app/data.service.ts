@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {generate} from "rxjs/internal/observable/generate";
 import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
 
 @Injectable({
