@@ -1,8 +1,12 @@
 <div class="container" *ngIf="submitted == false">
-  <span>Please enter your JSON data into the text input and submit or upload as a text file</span>
+  <span class="instructions">Please enter your JSON data into the space below and submit or upload as a text file</span>
   <form>
-    <textarea cols="30" rows="10" [(ngModel)]="jsonText" [ngModelOptions]="{standalone: true}"></textarea>
-    <input type="button" value="Submit" (click)="submitJson()">
-    <input type="file" (change)="fileChanged($event)">
+    <div class="row col-12 align-items-center justify-content-center flex-grow-1">
+      <textarea cols="100" rows="10" [(ngModel)]="jsonText" [ngModelOptions]="{standalone: true}"></textarea>
+      <input type="button" value="Submit" (click)="submitJson()">
+    </div>
+    <div class="center">
+      <input type="file" (change)="fileChanged($event)">
+    </div>
   </form>
 </div>

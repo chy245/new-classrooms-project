@@ -18,6 +18,7 @@ export class ChartContainerComponent implements OnInit {
   chartTypes: string[] = ['doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut'];
   data: any[];
   labels: any[];
+  options: any[];
 
   constructor(private dataService: DataService) { }
 
@@ -26,9 +27,14 @@ export class ChartContainerComponent implements OnInit {
       if(dataGenerated) {
         this.data = this.dataService.data;
         this.labels = this.dataService.labels;
+        this.options = this.dataService.options;
       }
 
       this.dataLoaded = dataGenerated;
     });
+  }
+
+  reset() {
+    location.reload();
   }
 }

@@ -26,7 +26,7 @@ export class DataService {
 
   private _data: any[];
   private _labels: any[];
-  private legends: boolean[];
+  private _options: any[];
 
   dataGenerated: boolean = false;
   dataObservable = new BehaviorSubject<boolean>(this.dataGenerated);
@@ -41,6 +41,10 @@ export class DataService {
 
   get labels(): any[] {
     return this._labels;
+  }
+
+  get options(): any[] {
+    return this._options;
   }
 
   constructor() { }
@@ -165,6 +169,19 @@ export class DataService {
       [this.topStates[0], this.topStates[1], this.topStates[2], this.topStates[3], this.topStates[4], this.topStates[5],
         this.topStates[6], this.topStates[7], this.topStates[8], this.topStates[9], 'Others'],
       ['0-20', '21-40', '41-60', '61-80', '81-100', '100+']
+    ];
+
+    this._options = [
+      {options: {
+        tooltips: {
+          callbacks: {
+            label: (tooltipItem, data) => {
+              let dataset = data['datasets'][0];
+              return ((dataset['data'][tooltipItem['index']] / this.numOfUsers) * 100).toFixed(2);
+            }
+          }
+        }
+       }}
     ];
 
     this.dataGenerated = true;

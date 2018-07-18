@@ -18,6 +18,11 @@ export class SubmitJsonComponent implements OnInit {
   }
 
   submitJson() {
+    if(!this.jsonText || this.jsonText.charAt(0) !== '{') {
+      alert('Please enter valid JSON input');
+      return;
+    }
+    
     this.dataService.submitJsonAsText(this.jsonText);
     this.submitted = true;
   }

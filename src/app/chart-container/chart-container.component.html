@@ -1,6 +1,11 @@
-<div *ngIf="dataLoaded">
-  <div class="chart col-4" *ngFor="let title of chartTitles; let i = index">
-    <h3>{{title}}</h3>
-    <app-chart [chartType]="chartTypes[i]" [data]="data[i]" [labels]="labels[i]" [legend]="true"></app-chart>
+<div *ngIf="dataLoaded" class="container-fluid">
+  <span>
+    <input type="button" value="Reset" (click)="reset()">
+  </span>
+  <div class="row">
+    <div class="chart col-4" *ngFor="let title of chartTitles; let i = index">
+      <h3>{{title}}</h3>
+      <app-chart [chartType]="chartTypes[i]" [data]="data[i]" [labels]="labels[i]" [legend]="true" [options]="options[0]"></app-chart>
+    </div>
   </div>
 </div>
