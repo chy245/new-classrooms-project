@@ -1,0 +1,8 @@
+<div class="container" *ngIf="submitted == false">
+  <span>Please enter your JSON data into the textbox and submit or upload a .json file</span>
+  <form>
+    <textarea cols="30" rows="10" [(ngModel)]="jsonText" [ngModelOptions]="{standalone: true}"></textarea>
+    <input type="button" value="Submit" (click)="submitJson()">
+    <input type="file" (change)="fileUploaded()">
+  </form>
+</div>

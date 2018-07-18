@@ -30,7 +30,7 @@ let femalesInState;
 let malesInState;
 let ageRange;
 
-app.route('/api/post_test').post((req, res) => {
+app.route('/api/userStats').post((req, res) => {
   if(!req.is('application/json')) {
     res.status(400).send("JSON object is required");
   } else {
@@ -75,6 +75,7 @@ function processJson(body, returnType) {
     lastName.charAt(0) >= 'a' && lastName.charAt(0) <= 'm' ? lastNames.AtoM++ : lastNames.NtoZ++;
 
     popInState[state] == null ? popInState[state] = 1 : popInState[state]++;
+    sortedPopInState = sortProperties(popInState);
 
     if(gender === 'female') {
       numOfFemales++;
@@ -99,8 +100,6 @@ function processJson(body, returnType) {
       ageRange[5]++;
     }
   }
-
-  sortedPopInState = sortProperties(popInState);
 
   if(returnType === 'json') {
     return exportAsJson();
