@@ -10,6 +10,7 @@ export class SubmitJsonComponent implements OnInit {
 
   @Input() jsonText: string;
   submitted: boolean = false;
+  file: any;
 
   constructor(private dataService: DataService) { }
 
@@ -17,12 +18,13 @@ export class SubmitJsonComponent implements OnInit {
   }
 
   submitJson() {
-    console.log('json submitted');
+    this.dataService.submitJsonAsText(this.jsonText);
     this.submitted = true;
   }
 
-  fileUploaded() {
-    console.log('file uploaded');
+  fileChanged(event) {
+    this.file = event.target.files[0];
+    this.dataService.submitJsonAsFile(this.file);
     this.submitted = true;
   }
 
