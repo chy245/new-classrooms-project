@@ -10,18 +10,25 @@ import {Subscription} from "rxjs/internal/Subscription";
 export class ChartContainerComponent implements OnInit {
 
   @Input() dataLoaded: boolean;
-  private chartTypes: string[];
   private subscription: Subscription;
+  chartTitles: string[] = ['Percentage female versus male', 'Percentage of first names that start with A-M versus N-Z',
+    'Percentage of last names that start with A-M versus N-Z', 'Percentage of people in the top 10 most populous states',
+    'Percentage of females in the top 10 most populous states', 'Percentage of males in the top 10 most populous states',
+    'Age ranges'];
+  chartTypes: string[] = ['doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut'];
+  data: any[];
+  labels: any[];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.subscription = this.dataService.dataObservable.subscribe(dataGenerated => {
-      this.dataLoaded = dataGenerated;
-
       if(dataGenerated) {
-
+        this.data = this.dataService.data;
+        this.labels = this.dataService.labels;
       }
+
+      this.dataLoaded = dataGenerated;
     });
   }
 }

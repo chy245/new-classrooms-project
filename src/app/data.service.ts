@@ -24,7 +24,6 @@ export class DataService {
   private sumFemalesInTopStates: number;
   private sumMalesInTopStates: number;
 
-  private chartTypes: string[] = ['doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut', 'doughnut'];
   private _data: any[];
   private _labels: any[];
   private legends: boolean[];
@@ -34,6 +33,14 @@ export class DataService {
 
   get numOfUsers(): number {
     return this._numOfUsers;
+  }
+
+  get data(): any[] {
+    return this._data;
+  }
+
+  get labels(): any[] {
+    return this._labels;
   }
 
   constructor() { }
@@ -49,11 +56,11 @@ export class DataService {
     this.file = file;
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
-      this.jsonData = JSON.parse(fileReader.result);
+      this.submitJsonAsText(fileReader.result);
     };
 
     fileReader.readAsText(file);
-    this.process();
+
   }
 
   //Calculate the necessary statistics

@@ -1,3 +1,6 @@
 <div *ngIf="dataLoaded">
-  Data is loaded
+  <div class="chart col-4" *ngFor="let title of chartTitles; let i = index">
+    <h3>{{title}}</h3>
+    <app-chart [chartType]="chartTypes[i]" [data]="data[i]" [labels]="labels[i]" [legend]="true"></app-chart>
+  </div>
 </div>
